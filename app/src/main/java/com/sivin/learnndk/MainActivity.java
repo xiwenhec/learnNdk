@@ -1,20 +1,27 @@
 package com.sivin.learnndk;
 
 import android.content.Context;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import com.sivin.learnndk.less01.Less01Operation;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
+
+
+    static {
+        System.loadLibrary("learnNdk");
+    }
+
 
     private Context mContext;
     private List<String> mDataList;
@@ -74,8 +81,6 @@ public class MainActivity extends AppCompatActivity {
             }
         };
         mRecyclerView.setAdapter(mAdapter);
-
-
     }
 
 
@@ -95,6 +100,15 @@ public class MainActivity extends AppCompatActivity {
 
 
     private void onItemClick(int position) {
-        Toast.makeText(mContext,position+"",Toast.LENGTH_SHORT).show();
+        switch (position){
+            case 0: new Less01Operation().performClick();break;
+
+
+        }
+
+
+
+
+
     }
 }

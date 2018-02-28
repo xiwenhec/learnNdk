@@ -1,0 +1,16 @@
+cmake_minimum_required(VERSION 3.4.1)
+
+add_library(
+        learnNdk
+        SHARED
+        less01.cpp)
+
+
+find_library(
+        log-lib
+        log)
+
+
+target_link_libraries(
+        learnNdk
+        ${log-lib})

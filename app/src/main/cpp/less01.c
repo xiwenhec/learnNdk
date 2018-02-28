@@ -22,7 +22,8 @@ Java_com_sivin_learnndk_less01_NativeApi_accessField(JNIEnv *env, jobject instan
 
     //4.处理jstring
     jboolean isCopy = JNI_FALSE;
-    //获取和释放应该是成对出现的
+    //获取和释放应该是成对出现的,这里如果是copy的方式，这个值将会被赋值为1，否则是0，但是我们一般不关注这个是复制还是指针的指向
+    //因此我们一般写的时候是给NULL,这里我们接受一下可以看看。
     const char *c_str = (*env)->GetStringUTFChars(env,jstr,&isCopy);
     //我们打印一下从java层获取的字符串数据
     LOGD("%s",c_str);

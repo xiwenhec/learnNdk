@@ -122,10 +122,10 @@ Java_com_sivin_learnndk_lesson01_NativeApi_getStudentCurseName(JNIEnv *env, jobj
     jfieldID jCureseNameFileId = (*env)->GetFieldID(env,jCourseClz,"mCureseName","Ljava/lang/String;");
 
     //5.获取jstring value
-    jstring jcourseName = (*env)->GetObjectField(env,jCourse,jCureseNameFileId);
+    jstring jCourseName = (*env)->GetObjectField(env,jCourse,jCureseNameFileId);
 
     char value[1024];
-    int len = (*env)->GetStringUTFLength(env,jcourseName);
-    (*env)->GetStringUTFRegion(env,jcourseName,0,len,value);
+    int len = (*env)->GetStringUTFLength(env,jCourseName);
+    (*env)->GetStringUTFRegion(env,jCourseName,0,len,value);
     return (*env)->NewStringUTF(env, value);
 }

@@ -1,6 +1,9 @@
 package com.sivin.learnndk.less01;
 
 public class NativeApi {
+
+    private static String keyStatic = "test static";
+
     private String key = "test";
 
     public String getKey(){
@@ -10,4 +13,9 @@ public class NativeApi {
     public native void accessField();
     public native void accessField(Person person);
     public native void accessPersonField(Person person);
+    public native void accessPersonNameField(Person person);
+
+
+    //获取static数据成员
+    public native void accessStaticField();
 }

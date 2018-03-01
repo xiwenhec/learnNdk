@@ -10,7 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.sivin.learnndk.less01.Less01Operation;
+import com.sivin.learnndk.lesson01.Less01Operation;
 
 import java.util.ArrayList;
 import java.util.List;

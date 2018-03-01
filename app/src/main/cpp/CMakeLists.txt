@@ -3,7 +3,9 @@ cmake_minimum_required(VERSION 3.4.1)
 add_library(
         learnNdk
         SHARED
-        less01.c)
+        lesson01.c
+        lesson02.c
+)
 
 
 find_library(

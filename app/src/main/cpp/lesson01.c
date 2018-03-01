@@ -1,15 +1,14 @@
-#include <jni.h>
-#include <android/log.h>
-#define TAG "NDK"
-#define LOGV(...) __android_log_print(ANDROID_LOG_VERBOSE, TAG, __VA_ARGS__)
-#define LOGD(...) __android_log_print(ANDROID_LOG_DEBUG, TAG, __VA_ARGS__)
-#define LOGI(...) __android_log_print(ANDROID_LOG_INFO, TAG, __VA_ARGS__)
-#define LOGW(...) __android_log_print(ANDROID_LOG_WARN, TAG, __VA_ARGS__)
-#define LOGE(...) __android_log_print(ANDROID_LOG_ERROR, TAG, __VA_ARGS__)
+/**
+ *
+ * 本节我们主要是针对jni如何访问java中的对象，获取java的native方法传递过来的值
+ *
+ */
+#include "common.h"
+
 
 //通过JNI获取java层的属性成员，这个方法我们获取的是当前类对象的属性成员
 JNIEXPORT void JNICALL
-Java_com_sivin_learnndk_less01_NativeApi_accessField(JNIEnv *env, jobject instance) {
+Java_com_sivin_learnndk_lesson01_NativeApi_accessField(JNIEnv *env, jobject instance) {
 
     //1.获取这个对象的jclass对象
     jclass jclz = (*env)->GetObjectClass(env,instance);
@@ -34,25 +33,25 @@ Java_com_sivin_learnndk_less01_NativeApi_accessField(JNIEnv *env, jobject instan
 
 //这个方法获取的是java层person对象的属性成员，我们同时也看到了java层的方法重载映射到JNI层的函数名称的变化是
 JNIEXPORT void JNICALL
-Java_com_sivin_learnndk_less01_NativeApi_accessField__Lcom_sivin_learnndk_less01_Person_2(
-        JNIEnv *env, jobject instance, jobject person) {
-
+Java_com_sivin_learnndk_lesson01_NativeApi_accessField__Lcom_sivin_learnndk_bean_Student_2(
+        JNIEnv *env, jobject instance, jobject student) {
 
     // TODO
+
 }
 //这里我们生成多个函数进行对比，下面我实现其中的一个，我们最好不要使用函数重载来实现，因为android对JNI的标准并不是很完善
 JNIEXPORT void JNICALL
-Java_com_sivin_learnndk_less01_NativeApi_accessPersonField(JNIEnv *env, jobject instance,
-                                                           jobject person) {
+Java_com_sivin_learnndk_lesson01_NativeApi_accessPersonField(JNIEnv *env, jobject instance,
+                                                           jobject student) {
     //1. 获取jclss对象,这里我们传入的是person
-    jclass jclz = (*env)->GetObjectClass(env,person);
+    jclass jclz = (*env)->GetObjectClass(env,student);
 
     //2.获取fieldId,这里我们获取传入person对象的age,第三个参数传入的是field的名称，第四个参数传入的是field的签名
     jfieldID jfId = (*env)->GetFieldID(env,jclz,"age","I");
 
     //3.获取这个field，我们知道他在java层是一个int类型的数据，因此转换到JNI层就编程了jint类型
     //因此我们使用的函数就是GetIntField函数
-    jint age = (*env)->GetIntField(env,person,jfId);
+    jint age = (*env)->GetIntField(env,student,jfId);
 
     //我们打印一下这个值看看是不是正确的值
     LOGD("age:%d",age);
@@ -62,7 +61,7 @@ Java_com_sivin_learnndk_less01_NativeApi_accessPersonField(JNIEnv *env, jobject 
 
 //本次我们使用比较推荐的函数来处理字符串
 JNIEXPORT void JNICALL
-Java_com_sivin_learnndk_less01_NativeApi_accessPersonNameField(JNIEnv *env, jobject instance,
+Java_com_sivin_learnndk_lesson01_NativeApi_accessPersonNameField(JNIEnv *env, jobject instance,
                                                                jobject person) {
     //1. 获取jclss对象,这里我们传入的是person
     jclass jclz = (*env)->GetObjectClass(env,person);
@@ -86,7 +85,7 @@ Java_com_sivin_learnndk_less01_NativeApi_accessPersonNameField(JNIEnv *env, jobj
 }
 
 JNIEXPORT void JNICALL
-Java_com_sivin_learnndk_less01_NativeApi_accessStaticField(JNIEnv *env, jobject instance) {
+Java_com_sivin_learnndk_lesson01_NativeApi_accessStaticField(JNIEnv *env, jobject instance) {
     //1. 获取jclss对象,这里我们传入的是person
     jclass jclz = (*env)->GetObjectClass(env,instance);
 
@@ -100,8 +99,33 @@ Java_com_sivin_learnndk_less01_NativeApi_accessStaticField(JNIEnv *env, jobject 
     char outBuf[1024];
     int len = (*env)->GetStringUTFLength(env,jstr);
     (*env)->GetStringUTFRegion(env,jstr,0,len,outBuf);
-
     //我们看到static的函数加上了static的标识符，因此我们使用对应的方法时要分清这个调用
     //是属于static的还是属于instance的。
 
+}
+
+
+
+
+JNIEXPORT jstring JNICALL
+Java_com_sivin_learnndk_lesson01_NativeApi_getStudentCurseName(JNIEnv *env, jobject instance,
+                                                               jobject student) {
+    //1.获取jclss
+    jclass jStudentClz = (*env)->GetObjectClass(env,student);
+    //2.获取fieldId
+    jfieldID jStudentFieldId = (*env)->GetFieldID(env,jStudentClz,"mCurse","Lcom/sivin/learnndk/bean;");
+    //3.获取field
+    jobject jCourse = (*env)->GetObjectField(env,student,jStudentFieldId);
+    //4获取 course field jclass
+    jclass  jCourseClz = (*env)->GetObjectClass(env,jCourse);
+    //4.获取course name fileId
+    jfieldID jCureseNameFileId = (*env)->GetFieldID(env,jCourseClz,"mCureseName","Ljava/lang/String;");
+
+    //5.获取jstring value
+    jstring jcourseName = (*env)->GetObjectField(env,jCourse,jCureseNameFileId);
+
+    char value[1024];
+    int len = (*env)->GetStringUTFLength(env,jcourseName);
+    (*env)->GetStringUTFRegion(env,jcourseName,0,len,value);
+    return (*env)->NewStringUTF(env, value);
 }

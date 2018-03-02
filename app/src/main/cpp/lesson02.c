@@ -26,6 +26,5 @@ Java_com_sivin_learnndk_lesson02_NativeApi02_changeValue(JNIEnv *env, jobject in
 
     jstring newJstr = (*env)->NewStringUTF(env,"success form JNI");
     //3.调用这个函数
-    (*env)->CallVoidMethod(env,instance,jMid,a,b,newJstr);
-
+    (*env)->CallVoidMethod(env,instance,jMid,temp_b,temp_a,newJstr);
 }

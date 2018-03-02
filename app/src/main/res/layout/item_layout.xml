@@ -5,10 +5,11 @@
     android:orientation="vertical">
 
     <TextView
-        android:layout_margin="8dp"
+        android:padding="13dp"
         android:textSize="16sp"
+        android:gravity="center_horizontal"
         android:layout_gravity="center_horizontal"
         android:id="@+id/id_item_text"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 </LinearLayout>

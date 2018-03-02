@@ -25,7 +25,7 @@ Java_com_sivin_learnndk_lesson01_NativeApi_accessField(JNIEnv *env, jobject inst
     //因此我们一般写的时候是给NULL,这里我们接受一下可以看看。
     const char *c_str = (*env)->GetStringUTFChars(env,jstr,&isCopy);
     //我们打印一下从java层获取的字符串数据
-    LOGD("%s",c_str);
+    LOGD("lesson01->accessField:%s",c_str);
 
     //5.释放零时分配的内存空间，记住，我们最好不要改变c_str的指针指向
     (*env)->ReleaseStringUTFChars(env,jstr,c_str);
@@ -56,7 +56,7 @@ Java_com_sivin_learnndk_lesson01_NativeApi_accessPersonField(JNIEnv *env, jobjec
     jint age = (*env)->GetIntField(env,student,jfId);
 
     //我们打印一下这个值看看是不是正确的值
-    LOGD("age:%d",age);
+    LOGD("lesson01->accessPersonField: age:%d",age);
     //注意：这里获取的值是jint类型的属于基本数据类型，虚拟机会自己管理内存空间
 }
 

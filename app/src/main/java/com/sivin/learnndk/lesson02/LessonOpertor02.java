@@ -5,6 +5,7 @@ public class LessonOpertor02 {
     public void performClick(){
         NativeApi02 api = new NativeApi02();
         api.changeValue(10,20);
+        api.calcuateStr("123+456");
     }
 
 

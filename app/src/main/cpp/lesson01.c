@@ -29,6 +29,8 @@ Java_com_sivin_learnndk_lesson01_NativeApi_accessField(JNIEnv *env, jobject inst
 
     //5.释放零时分配的内存空间，记住，我们最好不要改变c_str的指针指向
     (*env)->ReleaseStringUTFChars(env,jstr,c_str);
+
+
 }
 
 //这个方法获取的是java层person对象的属性成员，我们同时也看到了java层的方法重载映射到JNI层的函数名称的变化是
@@ -113,7 +115,7 @@ Java_com_sivin_learnndk_lesson01_NativeApi_getStudentCurseName(JNIEnv *env, jobj
     //1.获取jclss
     jclass jStudentClz = (*env)->GetObjectClass(env,student);
     //2.获取fieldId
-    jfieldID jStudentFieldId = (*env)->GetFieldID(env,jStudentClz,"mCurse","Lcom/sivin/learnndk/bean;");
+    jfieldID jStudentFieldId = (*env)->GetFieldID(env,jStudentClz,"mCurse","Lcom/sivin/learnndk/bean/Course;");
     //3.获取field
     jobject jCourse = (*env)->GetObjectField(env,student,jStudentFieldId);
     //4获取 course field jclass
@@ -124,8 +126,10 @@ Java_com_sivin_learnndk_lesson01_NativeApi_getStudentCurseName(JNIEnv *env, jobj
     //5.获取jstring value
     jstring jCourseName = (*env)->GetObjectField(env,jCourse,jCureseNameFileId);
 
-    char value[1024];
+    char value[512];
     int len = (*env)->GetStringUTFLength(env,jCourseName);
     (*env)->GetStringUTFRegion(env,jCourseName,0,len,value);
     return (*env)->NewStringUTF(env, value);
 }
+
+

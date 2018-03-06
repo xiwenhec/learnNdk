@@ -132,4 +132,3 @@ Java_com_sivin_learnndk_lesson01_NativeApi_getStudentCurseName(JNIEnv *env, jobj
     return (*env)->NewStringUTF(env, value);
 }
 
-

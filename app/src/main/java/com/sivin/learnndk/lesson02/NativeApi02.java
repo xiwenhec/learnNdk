@@ -2,6 +2,8 @@ package com.sivin.learnndk.lesson02;
 
 import android.util.Log;
 
+import com.sivin.learnndk.bean.Course;
+
 public class NativeApi02 {
 
 
@@ -32,6 +34,17 @@ public class NativeApi02 {
     public static void onNativeStaticCallback(int value ,String opter){
         Log.e("lesson02", "onNativeStaticCallback: "+value +" opter:"+opter);
     }
+
+
+    public native void callStaticMedthod2();
+
+
+    /**
+     * 触发方法构造函数 同时返回一个java层的对象
+     */
+    public native Course callConstructMethd();
+
+
 
 
 }

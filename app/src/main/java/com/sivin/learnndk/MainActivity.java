@@ -10,8 +10,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.sivin.learnndk.lesson01.Less01Operation;
-import com.sivin.learnndk.lesson02.LessonOpertor02;
+import com.sivin.learnndk.lesson01.Lesson01Operator;
+import com.sivin.learnndk.lesson02.Lesson02Operator;
+import com.sivin.learnndk.lesson03.Lesson03Operator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
         mDataList = new ArrayList<>();
         mDataList.add("less01->获取java对象属性");
         mDataList.add("less02->JNI回调java层的函数");
+        mDataList.add("less03->JNI数组和异常操作");
     }
 
     private void initView() {
@@ -103,9 +105,9 @@ public class MainActivity extends AppCompatActivity {
 
     private void onItemClick(int position) {
         switch (position){
-            case 0: new Less01Operation().performClick();break;
-            case 1: new LessonOpertor02().performClick();break;
-
+            case 0: new Lesson01Operator().performClick();break;
+            case 1: new Lesson02Operator().performClick();break;
+            case 2: new Lesson03Operator().performClick();break;
         }
     }
 }

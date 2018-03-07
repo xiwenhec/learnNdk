@@ -5,6 +5,7 @@ add_library(
         SHARED
         lesson01.c
         lesson02.c
+        lesson03.c
 )
 
 

@@ -4,7 +4,7 @@ import android.util.Log;
 
 import com.sivin.learnndk.bean.Course;
 
-public class LessonOpertor02 {
+public class Lesson02Operator {
 
     public void performClick(){
         NativeApi02 api = new NativeApi02();

@@ -11,6 +11,9 @@ public class Lesson03Operator {
         for(int i : arr){
             Log.d("lesson03", "performClick: "+i);
         }
+
+        nativeApi.triggerData();
+
     }
 
 

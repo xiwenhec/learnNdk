@@ -26,4 +26,6 @@ public class NativeApi03 {
     public native void triggerData();
 
 
+    public native String[] initStrList(int num);
+
 }

@@ -7,10 +7,6 @@
 #include <string.h>
 
 
-
-
-
-
 jint compare(const jint *a, const jint *b) {
     return *a - *b;
 }
@@ -32,8 +28,6 @@ Java_com_sivin_learnndk_lesson03_NativeApi03_sortArray(JNIEnv *env, jobject inst
 }
 
 
-
-
 JNIEXPORT void JNICALL
 Java_com_sivin_learnndk_lesson03_NativeApi03_triggerData(JNIEnv *env, jobject instance) {
 
@@ -43,29 +37,57 @@ Java_com_sivin_learnndk_lesson03_NativeApi03_triggerData(JNIEnv *env, jobject in
     size_t num = strlen(str);
 
     //我们申请一块内存空间,由于java中字符串编码出现多余的时候会出现乱码，因此需要准确的将有效字符复制获取
-    jbyte* jbStr = malloc(num * sizeof(jchar));
-    memset(jbStr,0,num);
-    memccpy(jbStr,str,0,num);
+    jbyte *jbStr = malloc(num * sizeof(jchar));
+    memset(jbStr, 0, num);
+    memccpy(jbStr, str, 0, num);
 
     //创建JbyteArray对象，并设置JArray对象的值
-    jbyteArray jbArr = (*env)->NewByteArray(env,num);
-    (*env)->SetByteArrayRegion(env,jbArr,0,num,jbStr);
+    jbyteArray jbArr = (*env)->NewByteArray(env, num);
+    (*env)->SetByteArrayRegion(env, jbArr, 0, num, jbStr);
     //释放创建的内存C/C++创建的内存空间
     free(jbStr);
 
 
-    jclass jClz = (*env)->GetObjectClass(env,instance);
-    if(jClz == NULL){
-        LOGE("lesson03:%s","无法获取jclz");
+    jclass jClz = (*env)->GetObjectClass(env, instance);
+    if (jClz == NULL) {
+        LOGE("lesson03:%s", "无法获取jclz");
         return;
     }
-    jmethodID jmId = (*env)->GetMethodID(env,jClz,"onDataCome","([B)V");
-    if(jmId == NULL){
-        LOGE("lesson03:%s","无法获取jmId");
-        return ;
+    jmethodID jmId = (*env)->GetMethodID(env, jClz, "onDataCome", "([B)V");
+    if (jmId == NULL) {
+        LOGE("lesson03:%s", "无法获取jmId");
+        return;
     }
-    (*env)->DeleteLocalRef(env,jClz);
-    (*env)->CallVoidMethod(env,instance,jmId,jbArr);
+    (*env)->DeleteLocalRef(env, jClz);
+    (*env)->CallVoidMethod(env, instance, jmId, jbArr);
+
+}
+
+
+JNIEXPORT jobjectArray JNICALL
+Java_com_sivin_learnndk_lesson03_NativeApi03_initStrList(JNIEnv *env, jobject instance,
+                                                         jint num) {
+
+    jclass clz = (*env)->FindClass(env, "java/lang/String");
+    if (clz == NULL) {
+        return NULL;
+    }
+
+    //参数分别是数组多大，最后一个参数是初始值是多少，这里我们传入NULL
+    jobjectArray result = (*env)->NewObjectArray(env, num, clz, NULL);
+
+    for (int i = 0; i < num; i++) {
+        char *c_str = malloc(sizeof(char) * 256);
+        memset(c_str, 0, 256);
+        sprintf(c_str, "JNI字符串%d", i);
+        jstring jstr = (*env)->NewStringUTF(env, c_str);
+        (*env)->SetObjectArrayElement(env, result, i, jstr);
+        (*env)->DeleteLocalRef(env,jstr);
+        free(c_str);
+        c_str = NULL;
+    }
+
+    return result;
 
 }
 

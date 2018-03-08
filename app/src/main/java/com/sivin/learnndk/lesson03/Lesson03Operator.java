@@ -14,6 +14,11 @@ public class Lesson03Operator {
 
         nativeApi.triggerData();
 
+        String[] strings = nativeApi.initStrList(10);
+
+        for(int i = 0 ; i < 10 ; i++){
+            Log.e("lesson03", "performClick: "+strings[i]);
+        }
     }
 
 

@@ -185,5 +185,3 @@ Java_com_sivin_learnndk_lesson02_NativeApi02_callConstructMethd(JNIEnv *env, job
 }
 
 
-
-

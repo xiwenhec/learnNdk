@@ -65,7 +65,8 @@ Java_com_sivin_learnndk_lesson03_NativeApi03_triggerData(JNIEnv *env, jobject in
         return ;
     }
     (*env)->DeleteLocalRef(env,jClz);
-
     (*env)->CallVoidMethod(env,instance,jmId,jbArr);
 
 }
+
+

@@ -13,6 +13,7 @@ import android.widget.TextView;
 import com.sivin.learnndk.lesson01.Lesson01Operator;
 import com.sivin.learnndk.lesson02.Lesson02Operator;
 import com.sivin.learnndk.lesson03.Lesson03Operator;
+import com.sivin.learnndk.lesson04.Lesson04Operator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -46,6 +47,8 @@ public class MainActivity extends AppCompatActivity {
         mDataList.add("less01->获取java对象属性");
         mDataList.add("less02->JNI回调java层的函数");
         mDataList.add("less03->JNI数组和异常操作");
+        mDataList.add("less04->JNI局部引用全局引用和释放");
+
     }
 
     private void initView() {
@@ -108,6 +111,7 @@ public class MainActivity extends AppCompatActivity {
             case 0: new Lesson01Operator().performClick();break;
             case 1: new Lesson02Operator().performClick();break;
             case 2: new Lesson03Operator().performClick();break;
+            case 3: new Lesson04Operator().performClick();break;
         }
     }
 }

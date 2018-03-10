@@ -87,3 +87,4 @@ Java_com_sivin_learnndk_lesson04_NativeApi04_createWeakRef(JNIEnv *env, jobject 
     g_weak_cls = (*env)->NewWeakGlobalRef(env,cls);
 
 }
+

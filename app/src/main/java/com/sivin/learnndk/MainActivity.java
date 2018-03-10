@@ -14,6 +14,7 @@ import com.sivin.learnndk.lesson01.Lesson01Operator;
 import com.sivin.learnndk.lesson02.Lesson02Operator;
 import com.sivin.learnndk.lesson03.Lesson03Operator;
 import com.sivin.learnndk.lesson04.Lesson04Operator;
+import com.sivin.learnndk.lesson05.Lesson05Operator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,10 +45,10 @@ public class MainActivity extends AppCompatActivity {
         mContext = this;
         mDataList = new ArrayList<>();
         mDataList.add("less01->获取java对象属性");
-        mDataList.add("less02->JNI回调java层的函数");
-        mDataList.add("less03->JNI数组操作");
-        mDataList.add("less04->JNI局部引用全局引用和释放");
-        mDataList.add("less06->JNI异常处理");
+        mDataList.add("less02->JNI层回调java层的函数");
+        mDataList.add("less03->数组操作");
+        mDataList.add("less04->局部引用全局引用和释放");
+        mDataList.add("less05->异常处理");
         mDataList.add("less06->JNI动态注册");
         mDataList.add("less07->虚拟机相关");
     }
@@ -106,6 +107,7 @@ public class MainActivity extends AppCompatActivity {
             case 1: new Lesson02Operator().performClick();break;
             case 2: new Lesson03Operator().performClick();break;
             case 3: new Lesson04Operator().performClick();break;
+            case 4: new Lesson05Operator().performClick();break;
         }
     }
 }

@@ -31,6 +31,10 @@ Java_com_sivin_learnndk_lesson05_NativeApi05_jniCreateException(JNIEnv *env, job
         //如果只是清空异常，显然不是试用所有情况，此时我们可以自己手动创建一个异常抛给java层
         jclass newExc = (*env)->FindClass(env,"java/lang/IllegalArgumentException");
 
+        if(newExc == NULL){
+            LOGE("lesson05:","out of memory");
+            return ;
+        }
         (*env)->ThrowNew(env,newExc,"jniCreateException occur a exception");
     }
 }

@@ -72,7 +72,6 @@ Java_com_sivin_learnndk_lesson03_NativeApi03_initStrList(JNIEnv *env, jobject in
     if (clz == NULL) {
         return NULL;
     }
-
     //参数分别是数组多大，最后一个参数是初始值是多少，这里我们传入NULL
     jobjectArray result = (*env)->NewObjectArray(env, num, clz, NULL);
 
@@ -86,9 +85,7 @@ Java_com_sivin_learnndk_lesson03_NativeApi03_initStrList(JNIEnv *env, jobject in
         free(c_str);
         c_str = NULL;
     }
-
     return result;
-
 }
 
 

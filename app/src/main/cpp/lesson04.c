@@ -28,7 +28,7 @@
  *
  */
 JNIEXPORT jstring JNICALL
-Java_com_sivin_learnndk_lesson04_NativeApi04_initStr(JNIEnv *env, jobject instance) {
+Java_com_sivin_learnndk_lesson04_NativeApi04_demoLocalRef(JNIEnv *env, jobject instance) {
     jclass jClz = (*env)->FindClass(env,"java/lang/String");
     jmethodID jmId = (*env)->GetMethodID(env,jClz,"<init>","(Ljava/lang/String;)V");
 
@@ -44,4 +44,46 @@ Java_com_sivin_learnndk_lesson04_NativeApi04_initStr(JNIEnv *env, jobject instan
     //这里我们因为要将这个引用返回，此时这个对象的内存就由JNI交给了Jvm自己管理了
     //(*env)->DeleteLocalRef(env,jstr);
     return jstr;
+}
+
+
+
+/**
+ * 全局引用：GlobalRef
+ * 创建全局引用的唯一方法：(*env)->NewGlobalRef(env,jobj);
+ * 第二个参数是一个局部引用，是我们想要将某个对象，转换成全局引用，全局引用是夸线程的。
+ * 创建了全局引用，必须要手动释放，否则会引起内存泄露。
+ * @param env
+ * @param instance
+ */
+jstring globalRefJstr;
+JNIEXPORT void JNICALL
+Java_com_sivin_learnndk_lesson04_NativeApi04_createGlobalRef(JNIEnv *env, jobject instance) {
+
+    jobject jobj = (*env)->NewStringUTF(env,"hello");
+    globalRefJstr = (*env)->NewGlobalRef(env,jobj);
+}
+
+/**
+ * 释放全局引用
+ * @param env
+ * @param instance
+ */
+JNIEXPORT void JNICALL
+Java_com_sivin_learnndk_lesson04_NativeApi04_deleteGlobalRef(JNIEnv *env, jobject instance) {
+    (*env)->DeleteGlobalRef(env,globalRefJstr);
+}
+
+
+/**
+ * 若全局引用，不会阻止GC,因此不用担心内存泄露
+ * 若全局引用，也是夸线程的。
+ * 一般的情况下，当我们定义一个引用，这个引用我们无法确定这个引用会不会阻止gc回收，这时我们就应该定义成若全局引用
+ */
+jclass g_weak_cls;
+JNIEXPORT void JNICALL
+Java_com_sivin_learnndk_lesson04_NativeApi04_createWeakRef(JNIEnv *env, jobject instance) {
+    jclass cls = (*env)->FindClass(env,"java/lang/String");
+    g_weak_cls = (*env)->NewWeakGlobalRef(env,cls);
+
 }

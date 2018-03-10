@@ -38,7 +38,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         initData();
         initView();
-        initEvent();
     }
 
     private void initData() {
@@ -46,9 +45,11 @@ public class MainActivity extends AppCompatActivity {
         mDataList = new ArrayList<>();
         mDataList.add("less01->获取java对象属性");
         mDataList.add("less02->JNI回调java层的函数");
-        mDataList.add("less03->JNI数组和异常操作");
+        mDataList.add("less03->JNI数组操作");
         mDataList.add("less04->JNI局部引用全局引用和释放");
-
+        mDataList.add("less06->JNI异常处理");
+        mDataList.add("less06->JNI动态注册");
+        mDataList.add("less07->虚拟机相关");
     }
 
     private void initView() {
@@ -91,12 +92,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-
-    private void initEvent() {
-
-    }
-
-
     class MyHolder extends RecyclerView.ViewHolder {
         private TextView title;
         MyHolder(View itemView) {
@@ -104,7 +99,6 @@ public class MainActivity extends AppCompatActivity {
             title = itemView.findViewById(R.id.id_item_text);
         }
     }
-
 
     private void onItemClick(int position) {
         switch (position){

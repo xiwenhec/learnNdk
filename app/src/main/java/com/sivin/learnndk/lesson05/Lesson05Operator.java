@@ -11,7 +11,9 @@ public class Lesson05Operator {
         try {
             api.jniCreateException();
         }catch (Exception e){
-            Log.e("lesson05", "performClick: "+e.toString() );
+
+            Log.e("lesson05", "performClick: "+e.toString());
+
         }
 
     }

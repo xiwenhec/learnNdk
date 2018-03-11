@@ -4,13 +4,10 @@
 
 #include "common.h"
 
-
 /**
  * 如果在JNI里出现了异常，此时JNI的代码会走完，但是java层就无法执行
  * 那么入如果我们在C层遇到了异常，但是我们想要在java层继续运行，我们改如何执行呢？
  * 这里我们可以清空，然后返回，这样就不影响java层运行了。
- *
- *
  * @param env
  * @param instance
  */
@@ -21,10 +18,9 @@ Java_com_sivin_learnndk_lesson05_NativeApi05_jniCreateException(JNIEnv *env, job
 
     jfieldID fid = (*env)->GetFieldID(env,cls,"key","Ljava/lang/String;");
 
-
     jthrowable ex = (*env)->ExceptionOccurred(env);
     //判断异常是否发生
-    if(ex != NULL){
+    if(ex !=NULL){
         //这里我们清空 JNI产生的异常
         (*env)->ExceptionClear(env);
 

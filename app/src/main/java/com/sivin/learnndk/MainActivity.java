@@ -48,19 +48,20 @@ public class MainActivity extends AppCompatActivity {
         mDataList.add("less02->JNI层回调java层的函数");
         mDataList.add("less03->数组操作");
         mDataList.add("less04->局部引用全局引用和释放");
-        mDataList.add("less05->异常处理");
+        mDataList.add("less05->异常处理和缓存");
         mDataList.add("less06->JNI动态注册");
         mDataList.add("less07->虚拟机相关");
     }
 
     private void initView() {
+
         mRecyclerView = findViewById(R.id.recycle_view);
+
         mRecyclerView.setLayoutManager(
                 new LinearLayoutManager(mContext,LinearLayoutManager.VERTICAL,false));
 
         mRecyclerView.addItemDecoration(
                 new DefaultItemDecoration(this, DefaultItemDecoration.VERTICAL_LIST,0));
-
 
         mAdapter = new RecyclerView.Adapter<MyHolder>() {
             @Override

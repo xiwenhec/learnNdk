@@ -15,6 +15,7 @@ import com.sivin.learnndk.lesson02.Lesson02Operator;
 import com.sivin.learnndk.lesson03.Lesson03Operator;
 import com.sivin.learnndk.lesson04.Lesson04Operator;
 import com.sivin.learnndk.lesson05.Lesson05Operator;
+import com.sivin.learnndk.lessson06.Lesson06Operator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -109,6 +110,7 @@ public class MainActivity extends AppCompatActivity {
             case 2: new Lesson03Operator().performClick();break;
             case 3: new Lesson04Operator().performClick();break;
             case 4: new Lesson05Operator().performClick();break;
+            case 5: new Lesson06Operator().performClick();break;
         }
     }
 }

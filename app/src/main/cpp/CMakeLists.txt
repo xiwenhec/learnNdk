@@ -8,6 +8,7 @@ add_library(
         lesson03.c
         lesson04.c
         lesson05.c
+        lesson06.c
 )
 
 

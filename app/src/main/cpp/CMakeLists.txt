@@ -9,6 +9,8 @@ add_library(
         lesson04.c
         lesson05.c
         lesson06.c
+        lesson07.c
+        jni_register.c
 )
 
 

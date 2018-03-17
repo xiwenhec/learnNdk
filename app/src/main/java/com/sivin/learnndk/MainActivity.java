@@ -15,7 +15,8 @@ import com.sivin.learnndk.lesson02.Lesson02Operator;
 import com.sivin.learnndk.lesson03.Lesson03Operator;
 import com.sivin.learnndk.lesson04.Lesson04Operator;
 import com.sivin.learnndk.lesson05.Lesson05Operator;
-import com.sivin.learnndk.lessson06.Lesson06Operator;
+import com.sivin.learnndk.lesson06.Lesson06Operator;
+import com.sivin.learnndk.lesson07.Lesson07Operator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -51,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
         mDataList.add("less04->局部引用全局引用和释放");
         mDataList.add("less05->异常处理和缓存");
         mDataList.add("less06->JNI动态注册");
-        mDataList.add("less07->虚拟机相关");
+        mDataList.add("less07->多线程");
     }
 
     private void initView() {
@@ -111,6 +112,7 @@ public class MainActivity extends AppCompatActivity {
             case 3: new Lesson04Operator().performClick();break;
             case 4: new Lesson05Operator().performClick();break;
             case 5: new Lesson06Operator().performClick();break;
+            case 6: new Lesson07Operator().performClick();break;
         }
     }
 }

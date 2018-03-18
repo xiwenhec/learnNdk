@@ -8,10 +8,12 @@
 #ifndef NELEM
 #define NELEM(x) ((sizeof(x) / sizeof((x)[0])))
 #endif
+
+JavaVM* g_vm = NULL;
+
 static JNINativeMethod g_methods06[] = {
         { "testDynamicRegister", "()Ljava/lang/String;", (void *) testDynamicRegister}
 };
-
 
 static JNINativeMethod g_methods07[] = {
         { "createThread", "()V", (void *) createThread}
@@ -69,6 +71,9 @@ static int registerNativeMethods07(JNIEnv *env){
 
 
 JNIEXPORT jint JNI_OnLoad(JavaVM* vm, void* reserved){
+
+    g_vm = vm;
+
     jint result06 = JNI_FALSE , result07 = JNI_FALSE;
     JNIEnv *env = NULL;
     if((*vm)->GetEnv(vm,(void **)&env,JNI_VERSION_1_4) != JNI_OK){

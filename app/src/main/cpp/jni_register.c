@@ -73,7 +73,6 @@ static int registerNativeMethods07(JNIEnv *env){
 JNIEXPORT jint JNI_OnLoad(JavaVM* vm, void* reserved){
 
     g_vm = vm;
-
     jint result06 = JNI_FALSE , result07 = JNI_FALSE;
     JNIEnv *env = NULL;
     if((*vm)->GetEnv(vm,(void **)&env,JNI_VERSION_1_4) != JNI_OK){

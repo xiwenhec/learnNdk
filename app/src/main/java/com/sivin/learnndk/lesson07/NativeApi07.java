@@ -11,8 +11,8 @@ public class NativeApi07 {
 
 
 
-    private void onThreadCallback(){
-        Log.e(TAG, "onThreadCallback: "+Thread.currentThread().getName());
+    private void onThreadCallback(int result){
+        Log.e(TAG, "onThreadCallback: "+Thread.currentThread().getName()+" result:"+result);
     }
 
 

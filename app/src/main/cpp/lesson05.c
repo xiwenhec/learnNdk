@@ -10,6 +10,7 @@
  * 这里我们可以清空，然后返回，这样就不影响java层运行了。
  * @param env
  * @param instance
+ *
  */
 JNIEXPORT void JNICALL
 Java_com_sivin_learnndk_lesson05_NativeApi05_jniCreateException(JNIEnv *env, jobject instance) {
@@ -25,6 +26,7 @@ Java_com_sivin_learnndk_lesson05_NativeApi05_jniCreateException(JNIEnv *env, job
         (*env)->ExceptionClear(env);
 
         //如果只是清空异常，显然不是试用所有情况，此时我们可以自己手动创建一个异常抛给java层
+
         jclass newExc = (*env)->FindClass(env,"java/lang/IllegalArgumentException");
 
         if(newExc == NULL){

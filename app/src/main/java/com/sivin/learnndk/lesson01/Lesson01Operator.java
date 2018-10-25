@@ -15,6 +15,5 @@ public class Lesson01Operator {
         student.setmCurse(new Course("chinese",100));
         String name = nativeApi.getStudentCurseName(student);
         Log.e("lesson01", "performClick: "+name );
-
     }
 }

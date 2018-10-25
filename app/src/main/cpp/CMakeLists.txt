@@ -1,5 +1,7 @@
 cmake_minimum_required(VERSION 3.4.1)
 
+set(ANDROID_STL_TYPE c++_shared)
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14 -fno-rtti -fno-exceptions -Wall")
 add_library(
         learnNdk
         SHARED
@@ -11,8 +13,8 @@ add_library(
         lesson06.c
         lesson07.c
         jni_register.c
+        stllearn.cpp
 )
-
 
 find_library(
         log-lib

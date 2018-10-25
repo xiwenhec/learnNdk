@@ -23,11 +23,9 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-
     static {
         System.loadLibrary("learnNdk");
     }
-
 
     private Context mContext;
     private List<String> mDataList;
@@ -96,14 +94,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    class MyHolder extends RecyclerView.ViewHolder {
-        private TextView title;
-        MyHolder(View itemView) {
-            super(itemView);
-            title = itemView.findViewById(R.id.id_item_text);
-        }
-    }
-
     private void onItemClick(int position) {
         switch (position){
             case 0: new Lesson01Operator().performClick();break;
@@ -113,6 +103,14 @@ public class MainActivity extends AppCompatActivity {
             case 4: new Lesson05Operator().performClick();break;
             case 5: new Lesson06Operator().performClick();break;
             case 6: new Lesson07Operator().performClick();break;
+        }
+    }
+
+    static class MyHolder extends RecyclerView.ViewHolder {
+        private TextView title;
+        MyHolder(View itemView) {
+            super(itemView);
+            title = itemView.findViewById(R.id.id_item_text);
         }
     }
 }

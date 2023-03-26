@@ -14,6 +14,8 @@ add_library(
         lesson07.c
         jni_register.c
         stllearn.cpp
+        JniMemoryUtil.cpp
+        MemoryUtil.cpp
 )
 
 find_library(

@@ -3,6 +3,7 @@
  * 本节我们主要是针对jni如何访问java中的对象，获取java的native方法传递过来的值
  *
  */
+#include <string.h>
 #include "common.h"
 
 
@@ -79,7 +80,7 @@ Java_com_sivin_learnndk_lesson01_NativeApi_accessPersonNameField(JNIEnv *env, jo
     //我们使用第二种推荐的方式来将jstring->char*
 
     //首先我们定义一个字符串数组,我们假定认为字符串最大是不超过1024的,我们最好初始化一下这个数组
-    char outBuf[1024]={0};
+    char outBuf[1024] = {0};
     int len = (*env)->GetStringUTFLength(env, jstr);
     (*env)->GetStringUTFRegion(env, jstr, 0, len, outBuf);
     //与GetStringUTFChars相比，这个方法的功能是一样的，但是GetStringUTFRegion这个函数没有做任何的内存空间的分配
@@ -105,7 +106,7 @@ Java_com_sivin_learnndk_lesson01_NativeApi_accessStaticField(JNIEnv *env, jobjec
     jstring jstr = (*env)->GetStaticObjectField(env, jclz, jfId);
 
     //4.剩下的处理就一样了
-    char outBuf[1024]={0};
+    char outBuf[1024] = {0};
     int len = (*env)->GetStringUTFLength(env, jstr);
     (*env)->GetStringUTFRegion(env, jstr, 0, len, outBuf);
     //我们看到static的函数加上了static的标识符，因此我们使用对应的方法时要分清这个调用
@@ -138,6 +139,9 @@ Java_com_sivin_learnndk_lesson01_NativeApi_getStudentCurseName(JNIEnv *env, jobj
     jstring jCourseName = (*env)->GetObjectField(env, jCourse, jCureseNameFileId);
 
     char value[512];
+    //C++中内置类型的栈变量，如果不手动初始化，则其值是随机的
+    memset(value, 0, sizeof(value));
+
     int len = (*env)->GetStringUTFLength(env, jCourseName);
     (*env)->GetStringUTFRegion(env, jCourseName, 0, len, value);
 

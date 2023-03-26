@@ -26,11 +26,11 @@ public class Student {
         this.age = age;
     }
 
-    public Course getmCurse() {
+    public Course getCurse() {
         return mCurse;
     }
 
-    public void setmCurse(Course mCurse) {
+    public void setCurse(Course mCurse) {
         this.mCurse = mCurse;
     }
 }

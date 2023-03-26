@@ -12,7 +12,7 @@ public class Lesson01Operator {
         nativeApi.accessField();
         nativeApi.accessPersonField(new Student("sivin",10));
         Student student = new Student("xiao ming",18);
-        student.setmCurse(new Course("chinese",100));
+        student.setCurse(new Course("chinese",100));
         String name = nativeApi.getStudentCurseName(student);
         Log.e("lesson01", "performClick: "+name );
     }
